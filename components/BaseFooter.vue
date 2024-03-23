@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute w-full bottom-0">
+  <div class="w-full">
     <footer class="bg-sky-100 h-16">
       <div class="h-full flex items-center justify-around">
 

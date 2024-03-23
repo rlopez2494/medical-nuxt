@@ -1,58 +1,54 @@
 <template>
   <div>
     <ClientOnly>
-      <AppointmentsList :appointments="appointments" />
+      <section class="h-10 flex justify-around items-stretch">
+        <button @click="appointmentsFilterType = 'Upcoming'"
+          :class="`w-1/3 ${isSelectedFilterMode('Upcoming')}`">Upcoming</button>
+        <button @click="appointmentsFilterType = 'Missed'"
+          :class="`w-1/3 ${isSelectedFilterMode('Missed')}`">Missed</button>
+        <button @click="appointmentsFilterType = 'Completed'"
+          :class="`w-1/3 ${isSelectedFilterMode('Completed')}`">Completed</button>
+      </section>
+
+      <AppointmentsList :appointments="filteredAppointments" />
+
+      <li class="h-12 text-center flex items-center justify-center">
+        <p class="underline text-sky-600">View past appointments ></p>
+      </li>
     </ClientOnly>
   </div>
 </template>
 
 <script setup>
-import { faker } from "@faker-js/faker";
+import { mockAppointments } from "~/mocks/appointments";
+const appointments = ref(mockAppointments);
 
-const getMockAppointment = () => {
-  const newBirthDate = faker.date.birthdate();
 
-  return {
-    id: faker.string.uuid(),
-    patientId: {
-      profilePicture: "https://picsum.photos/600",
-      id: faker.string.uuid(),
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      birthDate: newBirthDate,
-      age: getAge(newBirthDate),
-    },
-    doctorId: faker.string.uuid(),
-    date: faker.date.between({
-      from: '2024-01-01T00:00:00.000Z',
-      to: '2024-06-01T00:00:00.000Z'
-    }),
-    status: faker.helpers.arrayElement(['Open', 'Closed', 'Canceled', 'Completed']),
+const appointmentsFilterType = ref("Upcoming");
+const filteredAppointments = computed(
+  () => {
+    return appointments.value
+      .filter(filteringByMode[appointmentsFilterType.value])
+  }
+)
+
+const filteringByMode = {
+  "Upcoming"({ date }) {
+    const dateToTime = new Date(date).getTime();
+    return dateToTime >= currentDateToTime;
+  },
+  "Missed"({ date }) {
+    const dateToTime = new Date(date).getTime();
+    return dateToTime < currentDateToTime;
+  },
+  "Completed"({ status }) {
+    return status == "Completed"
   }
 };
 
-const getAge = (dateString) => {
-  var today = new Date();
-  var birthDate = new Date(dateString);
-  var age = today.getFullYear() - birthDate.getFullYear();
-  var m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-  return age;
-}
+const currentDateToTime = new Date().getTime();
 
-const appointments = [
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-  getMockAppointment(),
-]
+const isSelectedFilterMode = (filterType) => {
+  return appointmentsFilterType.value === filterType ? "border-b-2 border-b-solid border-b-sky-600" : ""
+}
 </script>
