@@ -1,5 +1,5 @@
 <template>
-  <header :class="`${isAppoitmentSearch ? '' : 'justify-between'} px-3 flex items-center h-12 bg-sky-600`">
+  <header :class="`h-[55px] ${isAppoitmentSearch ? '' : 'justify-between'} px-3 flex items-center bg-teal-500`">
 
     <template v-if="isAppoitmentSearch">
       <NuxtLink to="/appointments">

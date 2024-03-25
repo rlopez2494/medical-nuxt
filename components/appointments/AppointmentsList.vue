@@ -6,17 +6,17 @@
       </template>
 
       <template v-slot:content>
-        <section class="flex flex-col justify-center">
+        <NuxtLink :to="`/appointments/${appointment.id}`" class="flex flex-col justify-center">
           <div>
             <p class="font-semibold mb-0">
               {{ getFullName(appointment.patientId) }}
             </p>
-
           </div>
+
           <div>
             {{ getAge(appointment.patientId) }} | {{ getTimeFromDate(appointment.date) }}
           </div>
-        </section>
+        </NuxtLink>
       </template>
     </BaseListItem>
   </ul>
