@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen overflow-hidden">
+  <div class="flex flex-col h-screen overflow-hidden relative">
     <BaseHeader />
 
     <main class="flex-grow overflow-y-scroll">

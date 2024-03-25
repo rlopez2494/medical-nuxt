@@ -11,7 +11,7 @@ const getMockAppointment = () => {
       firstName: faker.person.firstName(),
       lastName: faker.person.lastName(),
       birthDate: newBirthDate,
-      age: getAge(newBirthDate),
+      age: getAge(newBirthDate), // UI specific age transformation
     },
     doctorId: faker.string.uuid(),
     date: faker.date.between({

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-full relative">
     <ClientOnly>
       <section class="h-10 flex justify-around items-stretch">
         <button @click="appointmentsFilterType = 'Upcoming'"
@@ -15,6 +15,11 @@
       <li class="h-12 text-center flex items-center justify-center">
         <p class="underline text-sky-600">View past appointments ></p>
       </li>
+
+      <NuxtLink to="/appointments/new"
+        class="absolute bottom-3 right-3 w-[60px] h-[60px] bg-sky-600 rounded-full flex items-center justify-center">
+        <Icon name="mdi:plus" size="2em" color="white"></Icon>
+      </NuxtLink>
     </ClientOnly>
   </div>
 </template>

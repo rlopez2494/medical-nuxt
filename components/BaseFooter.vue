@@ -15,7 +15,7 @@
           <p class="mb-0 text-sm" style="color: #888888">Appointments</p>
         </NuxtLink>
 
-        <NuxtLink to="/patientsList" class="text-center">
+        <NuxtLink to="/patients" class="text-center">
           <Icon name="mdi:book-open-variant" color="#888888" size="2em" />
           <br class="m-0 p-0">
           <p class="mb-0 text-sm" style="color: #888888">Patient List</p>
