@@ -9,6 +9,8 @@
         class="w-full h-10 border-0 focus:ring-0 focus:outline-0 rounded pl-4 text-slate-500">
     </template>
 
+    <h1 class="text-xl mb-0 text-white" v-else-if="isInAppointmentRecord">Appointment Record</h1>
+
     <h1 v-else class="text-xl mb-0 text-white">
       {{ getRouteName(currentRoute.name) }}
     </h1>
@@ -41,6 +43,7 @@ const getRouteName = (routeName = "") => {
 };
 
 const isInAppointments = ref(false);
+const isInAppointmentRecord = ref(false);
 const isAppoitmentSearch = ref(false);
 const isInPatients = ref(false);
 
@@ -50,5 +53,6 @@ watch(currentRoute, (val) => {
   isInAppointments.value = val.path === "/appointments";
   isAppoitmentSearch.value = val.path === "/appointments/search";
   isInPatients.value = val.path === "/patients";
+  isInAppointmentRecord.value = val.name == "appointments-id";
 }, { flush: 'pre', immediate: true, deep: true })
 </script>

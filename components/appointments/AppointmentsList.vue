@@ -1,24 +1,31 @@
 <template>
-  <ul>
-    <BaseListItem v-for="(appointment, index) in appointments" :key="index">
-      <template v-slot:prepend>
-        <img :src="appointment.patientId.profilePicture" class="rounded-full h-16 mr-2">
-      </template>
+  <ul class="px-2">
+    <NuxtLink v-for="(appointment, index) in appointments" :to="`/appointments/${appointment.id}`" :key="index">
+      <BaseListItem>
+        <template v-slot:prepend>
+          <img :src="appointment.patientId.profilePicture" class="rounded-full h-14 w-14">
+        </template>
 
-      <template v-slot:content>
-        <NuxtLink :to="`/appointments/${appointment.id}`" class="flex flex-col justify-center">
-          <div>
-            <p class="font-semibold mb-0">
-              {{ getFullName(appointment.patientId) }}
-            </p>
-          </div>
+        <template v-slot:content>
+          <section class="flex flex-col justify-center relative translate-x-[-8px]">
+            <div>
+              <p class="font-semibold mb-0">
+                {{ getFullName(appointment.patientId) }}
+              </p>
+            </div>
 
-          <div>
-            {{ getAge(appointment.patientId) }} | {{ getTimeFromDate(appointment.date) }}
-          </div>
-        </NuxtLink>
-      </template>
-    </BaseListItem>
+            <div style="color: #888888;" class="relative">
+              <p class="font-light">
+                {{ getAge(appointment.patientId) }} | {{ getTimeFromDate(appointment.date) }} <Icon
+                  class="absolute translate-y-[-12px] translate-x-[-15px] text-teal-500" size="50px" name="mdi:dot">
+                </Icon>
+              </p>
+            </div>
+          </section>
+        </template>
+      </BaseListItem>
+
+    </NuxtLink>
   </ul>
 </template>
 

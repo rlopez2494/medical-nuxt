@@ -1,7 +1,7 @@
 <template>
   <div class="h-full relative">
     <ClientOnly>
-      <section class="h-10 flex justify-around items-stretch">
+      <section style="color: #888888;" class="h-10 flex justify-around items-stretch">
         <button @click="appointmentsFilterType = 'Upcoming'"
           :class="`w-1/3 ${isSelectedFilterMode('Upcoming')}`">Upcoming</button>
         <button @click="appointmentsFilterType = 'Missed'"
@@ -13,11 +13,11 @@
       <AppointmentsList :appointments="filteredAppointments" />
 
       <li class="h-12 text-center flex items-center justify-center">
-        <p class="underline text-sky-600">View past appointments ></p>
+        <p class="underline text-teal-500">View past appointments ></p>
       </li>
 
       <NuxtLink to="/appointments/new"
-        class="absolute bottom-3 right-3 w-[60px] h-[60px] bg-sky-600 rounded-full flex items-center justify-center">
+        class="absolute bottom-3 right-3 w-[60px] h-[60px] bg-teal-500 rounded-full flex items-center justify-center">
         <Icon name="mdi:plus" size="2em" color="white"></Icon>
       </NuxtLink>
     </ClientOnly>
@@ -54,6 +54,6 @@ const filteringByMode = {
 const currentDateToTime = new Date().getTime();
 
 const isSelectedFilterMode = (filterType) => {
-  return appointmentsFilterType.value === filterType ? "border-b-2 border-b-solid border-b-sky-600" : ""
+  return appointmentsFilterType.value === filterType ? "border-b-2 border-b-solid border-b-teal-500 text-teal-500" : ""
 }
 </script>

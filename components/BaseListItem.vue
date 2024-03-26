@@ -1,5 +1,5 @@
 <template>
-  <li class="grid grid-cols-5 h-18 border border-b-solid border-b-gray-300 p-1">
+  <li class="grid grid-cols-5 h-18 border-b border-b-solid border-b-gray-100 p-1 pt-2">
 
     <div>
       <slot name="prepend">
