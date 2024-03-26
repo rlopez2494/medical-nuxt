@@ -1,12 +1,12 @@
 <template>
-  <ul>
+  <ul class="px-2">
     <BaseListItem v-for="(patient, index) in patients" :key="index">
       <template v-slot:prepend>
-        <img :src="patient.profilePicture" class="rounded-full h-16 mr-2">
+        <img :src="patient.profilePicture" class="rounded-full h-14 w-14">
       </template>
 
       <template v-slot:content>
-        <section class="flex flex-col justify-center">
+        <section class="flex flex-col justify-center relative translate-x-[-8px]">
           <div>
             <p class="font-semibold mb-0">
               {{ getFullName(patient) }}
@@ -14,7 +14,9 @@
 
           </div>
           <div>
-            {{ getAge(patient) }}
+            <p style="color: #888888;">
+              {{ getAge(patient) }}
+            </p>
           </div>
         </section>
       </template>
