@@ -39,6 +39,7 @@ const generateMockPatient = () => {
     otherDisabilities: faker.helpers.arrayElement(['None', 'Hearing', 'Vision', 'Physical']),
     bloodType: faker.helpers.arrayElement(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
     emergencyContact: faker.phone.number(),
+    phoneNumber: faker.phone.number(),
     hereditaryConditions: faker.helpers.arrayElement(['None', 'Diabetes', 'Cancer', 'Heart Disease']),
 
     // Database fields
@@ -50,3 +51,4 @@ const generateMockPatient = () => {
 export const getMockPatients = ({ length = 10 } = {}) =>
   Array.from({ length }, () => generateMockPatient());
 
+export const getMockPatient = () => generateMockPatient();

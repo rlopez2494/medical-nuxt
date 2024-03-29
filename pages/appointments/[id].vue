@@ -1,6 +1,5 @@
 <template>
-  <div class="container mx-auto">
-
+  <div class="mx-auto">
     <section class="px-2 py-4 bg-teal-100" style="color: #888888;">
       <p class="text-center text-emerald-500 text-l font-medium">Wed, 12 May 24 | 10:00 PM</p>
       <div class="grid grid-cols-3 gap-2 pt-4 text-sm">
@@ -57,15 +56,18 @@
         <p>Prescriptions</p>
       </div>
 
-      <div class="grid grid-cols-2 gap-3 px-3 mt-3">
+      <div class="grid grid-cols-2 gap-2 px-3 mt-3">
         <div>
-          <img class="rounded-sm" src="https://picsum.photos/600" width="600" height="600" alt="prescription-image">
+          <img class="rounded-sm mx-auto" src="https://picsum.photos/600" width="600" height="600"
+            alt="prescription-image">
         </div>
         <div>
-          <img class="rounded-sm" src="https://picsum.photos/600" width="600" height="600" alt="prescription-image">
+          <img class="rounded-sm mx-auto" src="https://picsum.photos/600" width="600" height="600"
+            alt="prescription-image">
         </div>
         <div>
-          <img class="rounded-sm" src="https://picsum.photos/600" width="600" height="600" alt="prescription-image">
+          <img class="rounded-sm mx-auto" src="https://picsum.photos/600" width="600" height="600"
+            alt="prescription-image">
         </div>
       </div>
 

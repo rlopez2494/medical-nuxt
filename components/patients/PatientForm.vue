@@ -1,6 +1,6 @@
 <template>
   <form class="container mx-auto p-4">
-    <section class="grid grid-cols-2 gap-4">
+    <section class="grid xs:grid-cols-1 md:grid-cols-2 gap-4">
       <div>
         <BaseInput label="First Name" v-model="form.firstName" type="text" />
       </div>
@@ -25,8 +25,8 @@
     </section>
 
     <section class="flex items-center justify-end mt-4">
-      <button class="mx-1" :class="filterButtonClass" type="button">Save</button>
-      <button class="mx-1" :class="filterButtonClass" type="button" @click="$emit('close')">Cancel</button>
+      <button class="mx-1" :class="buttonClass" type="button">Save</button>
+      <button class="mx-1" :class="buttonClass" type="button" @click="$emit('close')">Cancel</button>
     </section>
   </form>
 </template>
@@ -42,6 +42,7 @@ const form = reactive({
   email: null
 })
 
-const filterButtonClass = ref("bg-transparent border border-sky-600 py-2 px-4 p-1 rounded-sm")
+const filterButtonClass = ref("bg-transparent border text-neutral-500 text-md font-light border-neutral-400 py-2 px-4 p-1 rounded-md")
+const buttonClass = ref("w-full py-4 bg-teal-500 text-white text-lg py-2 px-4 p-1 rounded-md")
 const genders = ref(['Male', 'Female', 'Other'])
 </script>
