@@ -22,6 +22,11 @@
       <div>
         <BaseInput label="Email" v-model="form.email" type="tel" />
       </div>
+      <div>
+        <button class="mx-1" :class="buttonClass" type="button">
+          <Icon name="mdi:upload"></Icon>Upload Prescription
+        </button>
+      </div>
     </section>
 
     <section class="flex items-center justify-end mt-4">
