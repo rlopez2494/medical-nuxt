@@ -46,6 +46,16 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Profile",
+  meta: [
+    {
+      name: "description",
+      content: "Profile page"
+    }
+  ]
+})
+
 import { getMockPatient } from "@/mocks/patients"
 const patient = getMockPatient()
 

@@ -22,7 +22,7 @@
     </div>
 
     <div v-else-if="isInPatients">
-      <button class="mr-3">
+      <button class="mr-3" @click="togglePatientsFilter(true)">
         <Icon name="mdi:filter" size="2em" color="white"></Icon>
       </button>
       <NuxtLink to="/patients/search">
@@ -35,6 +35,8 @@
 <script setup>
 import { useRoute } from 'vue-router';
 const currentRoute = useRoute();
+
+const { togglePatientsFilter } = inject("patientsFilter");
 
 const capitalize = (string = "") => string.charAt(0).toUpperCase() + string.slice(1);
 const getRouteName = (routeName = "") => {

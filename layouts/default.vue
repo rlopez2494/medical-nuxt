@@ -9,3 +9,16 @@
     <BaseFooter />
   </div>
 </template>
+
+<script setup>
+const isPatientsFilterOpen = ref(false);
+
+const togglePatientsFilter = (value = false) => {
+  isPatientsFilterOpen.value = value;
+}
+
+provide("patientsFilter", {
+  isPatientsFilterOpen,
+  togglePatientsFilter
+});
+</script>

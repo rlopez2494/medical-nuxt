@@ -25,6 +25,17 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Appointments",
+  meta: [
+    {
+      name: "description",
+      content: "Appointments page"
+    }
+  ]
+})
+
+
 import { mockAppointments } from "@/mocks/appointments";
 const appointments = ref(mockAppointments);
 

@@ -1,16 +1,14 @@
 <template>
   <ClientOnly>
     <PatientsList :patients="patients" />
-    <button @click="toggleFilter(true)" type="button">Toggle Filter</button>
-
-    <BaseModal v-model="isFilterVisible">
+    <BaseModal v-model="isPatientsFilterOpen">
       <section class="grid grid-cols-3 h-16 font-bold text-xl mb-2 px-3 border border-b-solid border-b-neutral-100">
         <div></div>
         <div class="flex items-center justify-center">
           <p class="mb-0 text-l font-medium">Filter</p>
         </div>
         <div class="text-right flex flex-row-reverse items-center">
-          <button @click="toggleFilter(false)">
+          <button @click="togglePatientsFilter(false)">
             <Icon name="mdi:close" size="35px"></Icon>
           </button>
         </div>
@@ -49,13 +47,20 @@
 
 <script setup>
 import { getMockPatients } from "@/mocks/patients";
+
+useHead({
+  title: "Patients",
+  meta: [
+    {
+      name: "description",
+      content: "Appointments page"
+    }
+  ]
+})
+
+const { isPatientsFilterOpen, togglePatientsFilter } = inject("patientsFilter");
+
 const patients = ref(getMockPatients());
-const isFilterVisible = ref(false);
-
-const toggleFilter = (value = false) => {
-  isFilterVisible.value = value;
-};
-
 const filterButtonClass = ref("bg-transparent border text-neutral-500 text-md font-light border-neutral-400 py-2 px-4 p-1 rounded-md")
 const buttonClass = ref("w-full py-4 bg-teal-500 text-white text-lg py-2 px-4 p-1 rounded-md")
 </script>
