@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-import { getMockPatients } from '~/mocks/patients';
+import { getMockPatients } from '@/mocks/patients';
 
 const patientFormDialog = ref(false);
 const patients = ref(getMockPatients());

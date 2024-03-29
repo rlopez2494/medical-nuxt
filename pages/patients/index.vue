@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { getMockPatients } from "~/mocks/patients";
+import { getMockPatients } from "@/mocks/patients";
 const patients = ref(getMockPatients());
 const isFilterVisible = ref(false);
 

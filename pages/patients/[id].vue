@@ -63,8 +63,8 @@
 </template>
 
 <script setup>
-import { getMockPatient } from "~/mocks/patients"
-import { mockAppointments } from "~/mocks/appointments"
+import { getMockPatient } from "@/mocks/patients"
+import { mockAppointments } from "@/mocks/appointments"
 
 const isPatientFormDialogVisible = ref(false);
 const openPatientFormDialog = () => {

@@ -7,6 +7,6 @@
 </template>
 
 <script setup>
-import { mockAppointments } from "~/mocks/appointments";
+import { mockAppointments } from "@/mocks/appointments";
 const appointments = ref(mockAppointments);
 </script>
