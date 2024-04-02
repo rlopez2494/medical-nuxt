@@ -8,5 +8,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@samk-dev/nuxt-vcalendar',
+    '@pinia/nuxt',
   ]
 })

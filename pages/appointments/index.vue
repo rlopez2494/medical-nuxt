@@ -25,6 +25,15 @@
 </template>
 
 <script setup>
+import { useAuthStore } from "@/stores/auth";
+const authStore = useAuthStore();
+
+authStore
+  .getCurrentUser()
+  .then((user) => {
+    console.log("Hola como estas este es el user: ", user)
+  })
+
 useHead({
   title: "Appointments",
   meta: [
