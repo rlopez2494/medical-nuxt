@@ -6,11 +6,30 @@
       <slot />
     </main>
 
-    <BaseFooter />
+    <BaseFooter v-if="showForm" />
   </div>
 </template>
 
 <script setup>
+import { useRoute } from "vue-router";
+
+import { useAuthStore } from "@/stores/auth";
+const authStore = useAuthStore();
+
+const showForm = ref(false);
+const currentRoute = useRoute();
+
+watch(currentRoute, async () => {
+  try {
+    const currentSession = await authStore.getCurrentSession();
+    showForm.value = !!currentSession?.user;
+  } catch (error) {
+    console.error(error)
+    showForm = false;
+  }
+}, { immediate: true })
+
+
 const isPatientsFilterOpen = ref(false);
 
 const togglePatientsFilter = (value = false) => {

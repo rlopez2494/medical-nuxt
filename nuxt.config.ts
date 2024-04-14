@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   features: {
     devLogs: false,
   },
+  ssr: false, // Until we get the authentication solved
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-icon',

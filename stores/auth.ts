@@ -36,6 +36,24 @@ export const useAuthStore = defineStore("auth", {
       } catch (error) {
         throw error;
       }
+    },
+    async getCurrentSession() {
+      try {
+        const session = await AuthController.getCurrentSession();
+        this.currentUser = session?.user;
+        return session;
+      } catch (error) {
+        throw error;
+      }
+    },
+    async logout() {
+      try {
+        await AuthController.logout();
+        this.currentUser = null;
+        navigateTo("/");
+      } catch (error) {
+        throw error;
+      }
     }
   }
 

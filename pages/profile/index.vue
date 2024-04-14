@@ -31,7 +31,7 @@
       </template>
     </BaseListItem>
 
-    <BaseListItem class="px-3">
+    <BaseListItem class="px-3 cursor-pointer" @click="logout">
       <template v-slot:content>
         <p class="font-light text-lg mb-0 py-2 text-red-500">Logout</p>
       </template>
@@ -46,6 +46,9 @@
 </template>
 
 <script setup>
+import { useAuthStore } from "@/stores/auth"
+const authStore = useAuthStore();
+
 useHead({
   title: "Profile",
   meta: [
@@ -58,5 +61,10 @@ useHead({
 
 import { getMockPatient } from "@/mocks/patients"
 const patient = getMockPatient()
+
+// Methods
+const logout = () => {
+  authStore.logout();
+}
 
 </script>

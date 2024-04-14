@@ -14,7 +14,7 @@
           <p class="mb-0 text-sm">Patient List</p>
         </NuxtLink>
 
-        <NuxtLink to="/profile" active-class="text-teal-500" class="text-center">
+        <NuxtLink to="/profile" exact-active-class="text-teal-500" class="text-center">
           <Icon name="mdi:account-outline" size="2em" />
           <br class="m-0 p-0">
           <p class="mb-0 text-sm">Profile</p>
@@ -22,5 +22,4 @@
       </div>
     </footer>
   </div>
-
 </template>
