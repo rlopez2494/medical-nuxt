@@ -62,4 +62,13 @@ const signIn = async ({ email, password }) => {
   }
 }
 
+const logIn = async ({ email, password }) => {
+  try {
+    await authStore.logIn({ email, password });
+    navigateTo("/appointments")
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
 </script>

@@ -27,7 +27,7 @@
     </section>
 
     <section>
-      <VDatePicker color="blue" borderless expanded v-model="date" :attributes="attrs" />
+      <VDatePicker color="blue" borderless expanded v-model="appointmentForm.date" :attributes="attrs" />
     </section>
 
     <section>
@@ -59,13 +59,18 @@
 
 <script setup>
 import { getMockPatients } from '@/mocks/patients';
+const appointmentForm = reactive({
+  patient_id: null,
+  date: new Date().toISOString().split('T')[0],
+  status: null,
+  doctor_id: null,
+})
 
 const patientFormDialog = ref(false);
 const patients = ref(getMockPatients());
 const selectedPatient = ref(null);
 const filterButtonClass = ref("bg-transparent border border-sky-600 py-2 px-4 p-1 rounded-sm");
 
-const date = ref(new Date().toISOString().split('T')[0]);
 const attrs = ref([
   {
     key: 'today',
