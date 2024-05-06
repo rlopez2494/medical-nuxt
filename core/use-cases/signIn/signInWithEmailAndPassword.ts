@@ -1,9 +1,9 @@
 
-import SignUp from "@/core/entities/SignUp";
+import SignIn from "@/core/entities/SignUp";
 import type EmailAndPasswordDTO from "~/core/data-transfer-objects/login/EmailAndPasswordDTO";
 import type AuthenticationGateway from "@/core/interfaces/gateways/AuthenticationGateway";
 
-export default class SignUpWithEmailAndPassword {
+export default class SignInWithEmailAndPassword {
   private authenticationGateway: AuthenticationGateway;
 
   constructor({ authenticationGateway }: { authenticationGateway: AuthenticationGateway }) {
@@ -12,14 +12,14 @@ export default class SignUpWithEmailAndPassword {
 
   async execute({ data }: { data: EmailAndPasswordDTO }) {
     try {
-      const signUpInstance = new SignUp(data);
-      const validationErrors = signUpInstance.validationErrors({ mode: "emailAndPassword" });
+      const signInInstance = new SignIn(data);
+      const validationErrors = signInInstance.validationErrors({ mode: "emailAndPassword" });
       if (validationErrors) {
         throw new Error('Invalid data');
       }
 
-      const signUpResponse = await this.authenticationGateway.signUpWithEmailAndPassword(data);
-      const { user, session } = signUpResponse;
+      const signInResponse = await this.authenticationGateway.signInWithEmailAndPassword(data);
+      const { user, session } = signInResponse;
       return { user, session };
     } catch (error) {
       throw new Error(error as any);

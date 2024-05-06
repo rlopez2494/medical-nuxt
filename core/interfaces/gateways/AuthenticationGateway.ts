@@ -5,6 +5,7 @@ export default interface AuthenticationGateway {
 
   // 
   signUpWithEmailAndPassword({ email, password }: { email: string; password: string }): Promise<any>;
+  signInWithEmailAndPassword({ email, password }: { email: string; password: string }): Promise<any>
 
   // 
   logout(): Promise<void>;

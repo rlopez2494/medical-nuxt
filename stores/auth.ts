@@ -1,5 +1,4 @@
 // Domain
-import SignUp from "@/core/entities/SignUp";
 import AuthController from "@/infrastructure/controllers/AuthControllerNuxtImpl";
 
 // External
@@ -15,17 +14,18 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async signUpWithEmailAndPassword({ email, password }: any) {
       try {
-        const signUpInstance = new SignUp({ email, password });
-        const validationErrors = signUpInstance.validationErrors();
-        if (validationErrors) {
-          console.log("Invalid Data: ", validationErrors);
-          return;
-        }
-
         await AuthController.signUpWithEmailAndPassword({ email, password });
       } catch (error) {
         throw error;
       }
+    },
+    async signInWithEmailAndPassword({ email, password }: { email: string; password: string; }) {
+      try {
+        await AuthController.signInWithEmailAndPassword({ email, password })
+      } catch (error) {
+        throw error;
+      }
+
     },
     async getCurrentUser() {
       try {

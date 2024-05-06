@@ -8,10 +8,14 @@ import Logout from "@/core/use-cases/logout";
 import AuthController from "@/core/interfaces/controllers/AuthController";
 import AuthGatewaySupabaseImpl from "@/infrastructure/gateways/AuthenticationGatewaySupabaseImpl";
 import SignUpWithEmailAndPassword from "~/core/use-cases/signUp/signUpWithEmailAndPassword";
+import SignInWithEmailAndPassword from "~/core/use-cases/signIn/signInWithEmailAndPassword";
 
 const dependencies = {
   signUpWithEmailAndPasswordUseCase: new SignUpWithEmailAndPassword({
     authenticationGateway: new AuthGatewaySupabaseImpl(),
+  }),
+  signInWithEmailAndPasswordUseCase: new SignInWithEmailAndPassword({
+    authenticationGateway: new AuthGatewaySupabaseImpl()
   }),
   getCurrentUserUseCase: new GetCurrentUser({
     authenticationGateway: new AuthGatewaySupabaseImpl(),

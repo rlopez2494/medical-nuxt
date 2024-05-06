@@ -39,13 +39,28 @@ export default class AuthGatewaySupabaseImpl implements AuthenticationGateway {
       })
 
       if (error) {
-        console.log("The error: ", { ...error });
         throw error;
       }
 
       const { access_token, refresh_token } = signUpResponse.session as any; // some typescript caveats I need to fix
       await supabase.auth.setSession({ access_token, refresh_token })
       const { user, session } = signUpResponse;
+      return { user, session };
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // SignIn
+  async signInWithEmailAndPassword({ email, password }: { email: string, password: string }) {
+    try {
+      const { data: signInResponse, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        throw error;
+      }
+
+      const { user, session } = signInResponse;
       return { user, session };
     } catch (error) {
       throw error;
