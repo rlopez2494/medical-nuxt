@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="patient-dropdown">{{ label }}</label>
-    <input id="patient-dropdown" type="text" v-model="search" data-dropdown-toggle="dropdown"
+    <input :value="search" id="patient-dropdown" type="text" @input="setSearch($event)" data-dropdown-toggle="dropdown"
       class="w-full border border-solid border-y-gray-300 p-2 rounded-md" placeholder="Search for a patient" />
 
     <ul v-if="search && customFilter(items, search).length"
@@ -9,9 +9,9 @@
       aria-labelledby="patient-dropdown">
       <slot name="list-prepend" :clearSearch="clearSearch"></slot>
 
-      <li v-for="item in customFilter(items, search)" :key="item[itemKey]"
-        class="p-3 border border-solid border-y-gray-300">
-        <button @click="setSelection(item)" class="h-full w-full m-auto">
+      <li :class="buttonClass({ isSelected: item[itemValue] == model })" v-for="item in customFilter(items, search)"
+        :key="item[itemKey]" class="p-3 border border-solid border-y-gray-300">
+        <button @click.stop="setSelection(item)" :class="buttonClass({ isSelected: item[itemValue] == model })">
           <slot name="item-content" :item="item">
             <p class="text-start">
               {{ typeof itemText == 'function' ? itemText(item) : item[itemText] || 'Undefined' }}
@@ -27,6 +27,17 @@
 const model = defineModel()
 const search = ref('');
 
+const buttonClass = ({ isSelected = false }) => ({
+  "h-full": true,
+  "w-full": true,
+  "m-auto": true,
+  "bg-teal-500": isSelected
+});
+
+const setSearch = ({ target: { value } }) => {
+  search.value = value
+}
+
 const setSelection = (item) => {
   if (props.returnObject && !props.itemValue) {
     model.value = item;
@@ -35,6 +46,9 @@ const setSelection = (item) => {
       ? props.itemValue(item)
       : item[props.itemValue];
   }
+
+  console.log("the search value: ", typeof props.itemText == "function" ? props.itemText(item) : item[props.itemText])
+  search.value = typeof props.itemText == "function" ? props.itemText(item) : item[props.itemText]
 }
 
 const clearSearch = () => {
@@ -56,6 +70,10 @@ const props = defineProps({
     default: false
   },
   itemText: {
+    type: [Function, String],
+    default: (item) => item
+  },
+  itemValue: {
     type: [Function, String],
     default: (item) => item
   },
